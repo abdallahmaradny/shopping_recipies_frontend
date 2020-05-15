@@ -1,21 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Recipe } from '../recipe.model'
+import { RecipesService } from '../recipes.service';
 @Component({
   selector: 'app-recipe-list',
   templateUrl: './recipe-list.component.html',
-  styleUrls: ['./recipe-list.component.css']
+  styleUrls: ['./recipe-list.component.css'],
 })
 
 
 export class RecipeListComponent implements OnInit {
-recipes:Recipe[]=[
-  new Recipe("botato","Good botato","https://upload.wikimedia.org/wikipedia/commons/3/39/Recipe.jpg"),
-  new Recipe("botato","Good botato","https://get.pxhere.com/photo/dish-food-cuisine-ingredient-produce-recipe-meat-vegetarian-food-comfort-food-side-dish-bento-Yong-tau-foo-meal-salad-teriyaki-chinese-food-japanese-cuisine-donburi-1575227.jpg")
-
-]
-  constructor() { }
+  recipes: Recipe[] = [];
+  constructor(private recipesService: RecipesService) { }
 
   ngOnInit(): void {
+    this.recipes = this.recipesService.getRecipes()
   }
+
+
 
 }
